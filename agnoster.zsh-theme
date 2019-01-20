@@ -1,6 +1,6 @@
 # vim:ft=zsh ts=2 sw=2 sts=2
 #
-# agnoster's Theme - https://gist.github.com/3712874
+# myagnoster's Theme - https://gist.github.com/3712874
 # A Powerline-inspired theme for ZSH
 #
 # # README
@@ -153,7 +153,7 @@ prompt_virtualenv() {
 }
 
 ## Main prompt
-prompt_agnoster_main() {
+prompt_myagnoster_main() {
   RETVAL=$?
   CURRENT_BG='NONE'
   for prompt_segment in "${AGNOSTER_PROMPT_SEGMENTS[@]}"; do
@@ -161,18 +161,18 @@ prompt_agnoster_main() {
   done
 }
 
-prompt_agnoster_precmd() {
+prompt_myagnoster_precmd() {
   vcs_info
-  PROMPT='%{%f%b%k%}$(prompt_agnoster_main) '
+  PROMPT='%{%f%b%k%}$(prompt_myagnoster_main) '
 }
 
-prompt_agnoster_setup() {
+prompt_myagnoster_setup() {
   autoload -Uz add-zsh-hook
   autoload -Uz vcs_info
 
   prompt_opts=(cr subst percent)
 
-  add-zsh-hook precmd prompt_agnoster_precmd
+  add-zsh-hook precmd prompt_myagnoster_precmd
 
   zstyle ':vcs_info:*' enable git
   zstyle ':vcs_info:*' check-for-changes false
@@ -180,4 +180,4 @@ prompt_agnoster_setup() {
   zstyle ':vcs_info:git*' actionformats '%b (%a)'
 }
 
-prompt_agnoster_setup "$@"
+prompt_myagnoster_setup "$@"
