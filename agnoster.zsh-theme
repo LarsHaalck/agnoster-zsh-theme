@@ -42,7 +42,11 @@ if [[ -z "$PRIMARY_FG" ]]; then
 fi
 
 # Characters
-SEGMENT_SEPARATOR="\ue0b0"
+
+# disables need for powerline fonts
+# SEGMENT_SEPARATOR="\ue0b0"
+SEGMENT_SEPARATOR=""
+
 PLUSMINUS="\u00b1"
 BRANCH="\ue0a0"
 DETACHED="\u27a6"
@@ -81,13 +85,16 @@ prompt_end() {
 # Each component will draw itself, and hide itself if no information needs to be shown
 
 # Context: user@hostname (who am I and where am I)
-prompt_context() {
-  local user=`whoami`
+#prompt_context() {
+#  local user=`whoami`
+#
+#  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
+#    prompt_segment $PRIMARY_FG default " %(!.%{%F{yellow}%}.)$user@%m "
+#  fi
+#}
 
-  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-    prompt_segment $PRIMARY_FG default " %(!.%{%F{yellow}%}.)$user@%m "
-  fi
-}
+# disables whoami 
+prompt_context() { }
 
 # Git: branch/detached head, dirty status
 prompt_git() {
@@ -110,7 +117,7 @@ prompt_git() {
       ref="$DETACHED ${ref/.../}"
     fi
     prompt_segment $color $PRIMARY_FG
-    print -n " $ref"
+    print -n " $ref "
   fi
 }
 
@@ -136,8 +143,11 @@ prompt_status() {
 # Display current virtual environment
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
-    color=cyan
-    prompt_segment $color $PRIMARY_FG
+    #color=cyan
+    #prompt_segment $color $PRIMARY_FG
+    color=8
+    color_fg=default
+    prompt_segment $color $color_fg
     print -Pn " $(basename $VIRTUAL_ENV) "
   fi
 }
