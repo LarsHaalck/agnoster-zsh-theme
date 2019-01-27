@@ -44,8 +44,8 @@ fi
 # Characters
 
 # disables need for powerline fonts
-# SEGMENT_SEPARATOR="\ue0b0"
-SEGMENT_SEPARATOR=""
+SEGMENT_SEPARATOR="\ue0b0"
+# SEGMENT_SEPARATOR=""
 
 PLUSMINUS="\u00b1"
 BRANCH="\ue0a0"
